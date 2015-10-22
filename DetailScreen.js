@@ -12,34 +12,47 @@
  	ScrollView,
  	StyleSheet,
  	TextInput,
+ 	Image,
  } = React;
+// var PurchaseSuccessView = require('./PurchaseSuccessView');
 
  var DetailScreen = React.createClass({
- 	getInitialState: function  () {
- 		return ({
- 			isLoading :false,
- 			detail : null,
- 			scrollY:0,
-
- 		});
- 	},
  	render: function  () {
+ 		var data = this.props.data;
  		return (
  			<View style = {styles.container}>
- 			<Text > this.props.data.title </Text>
- 			<TextInput />
+ 				<Text style = {styles.title}>{data.title} </Text>
+ 				<Image
+          				source={{uri:data.posters.thumbnail}}
+          				style={styles.thumbnail}/>
+ 				<TextInput  defaultValue = {'dddddd'}/>
  			</View>
  			);
- 	}
+ 	},
  });
 var styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
   },
-  instructions: {
+  purchaseview: {
+  	width:50,
+  	height:50,
+  },
+  title: {
+    fontSize: 20,
+    marginBottom: 8,
     textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  },
+  textinput: {
+  	height:40,
+  	borderColor:'gray',
+  	borderWidth:20
+  },
+    thumbnail: {
+    width: 53,
+    height: 81,
   },
 });
+
+module.exports = DetailScreen;

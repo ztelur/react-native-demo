@@ -41,15 +41,7 @@ var MainScreen = React.createClass({
                 titlecolor = 'white'
                 title = 'actionbar'
                 actions = {toolbarActions}
-                onIconClicked = {() =>{
-                	// this.refs['drawer'].openDrawer()}
-                	var navigator = this.props.navigator;
-                	navigator.push({
-                		title : 'ddd',
-  			name: 'detail',
-  			data: {title:"dddd",year:'1023',posters:{thumbnail:'xxxxxx'}},
-                	});
-                }}
+                onIconClicked = { () =>this.refs['drawer'].openDrawer()}
                 style = {styles.toolbar}/>
             <MainList  navigator = {this.props.navigator}/>
             </View>

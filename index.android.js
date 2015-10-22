@@ -11,6 +11,7 @@ var {
   View,
   Text,
   Navigator,
+  Image,
   BackAndroid,
 } = React;
 
@@ -37,10 +38,12 @@ var AwesomeProject = React.createClass({
         </View>
         );
     } else if (route.name === 'detail') {
-      return ( <View style = {styles.container} >
-          // <DetailScreen navigator = {navigationOperations} data = {route.data}/>
-          <Text>dddddddddd</Text>
-      </View>);
+      return ( 
+          <View style = {styles.container} >
+            <DetailScreen Navigator = {navigationOperations} data = {route.data} />
+          </View>
+
+      );
     }
   },
   render:function() {

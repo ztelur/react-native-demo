@@ -10,6 +10,7 @@ var {
 	Image,
 	Text,
 	View,
+	TouchableNativeFeedback,
 } = React;
 
 var MainListItem = React.createClass({
@@ -17,6 +18,9 @@ var MainListItem = React.createClass({
 		var movie = this.props.movie;
 		return (      
 			<View style={styles.container}>
+			<TouchableNativeFeedback
+				onPress = {this.props.onSelect}>
+				<View style = {styles.container}>
         				<Image
           				source={{uri: movie.posters.thumbnail}}
           				style={styles.thumbnail}/>
@@ -24,8 +28,11 @@ var MainListItem = React.createClass({
           				<Text style={styles.title}>{movie.title}</Text>
           				<Text style={styles.year}>{movie.year}</Text>
         				</View>
+        				</View>
+        				</TouchableNativeFeedback>
       			</View>);
 	},
+
 });
 
 var styles = StyleSheet.create({
