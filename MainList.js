@@ -16,6 +16,8 @@ var PAGE_SIZE = 25;
 var PARAMS = '?apikey=' + API_KEY + '&page_limit=' + PAGE_SIZE;
 var REQUEST_URL = API_URL + PARAMS;
 
+var SHANBAY_URL = 'http://www.shanbay.com/api/v1/bdc/review/more/';
+
 var MainListItem = require('./MainListItem');
 
 var MainList = React.createClass({
@@ -43,7 +45,6 @@ var MainList = React.createClass({
       })
       .done();
   },
-
   render: function() {
     if (!this.state.loaded) {
       return this.renderLoadingView();
@@ -53,8 +54,7 @@ var MainList = React.createClass({
       <ListView
         dataSource={this.state.dataSource}
         renderRow={this.renderMovie}
-        style={styles.listView}
-      />
+        style={styles.listView}/>
     );
   },
 
@@ -72,9 +72,19 @@ var MainList = React.createClass({
     return (
     	<MainListItem
     	 	movie = {movie} 
-    	 	/>
+    	 	onSelect = {() => {
+            console.log("dddd");
+            this.selectStory(movie)
+        }}/>
     );
   },
+  selectStory: function  (movie:object) {
+  	this.props.navigator.push({
+  		title : movie.title,
+  		name: 'detail',
+  		data:movie,
+  	});
+  }
 });
 
 var styles = StyleSheet.create({

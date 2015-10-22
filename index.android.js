@@ -9,47 +9,48 @@ var {
   AppRegistry,
   StyleSheet,
   View,
+  Text,
   Navigator,
   BackAndroid,
 } = React;
 
 // sel-defined component
 var MainScreen = require('./MainScreen');
-
+var DetailScreen = require('./DetailScreen');
 var _navigator;
 /** backpress button **/
-// BackAndroid.addEventListener('hardwareBackPress',function () {
-//   if (_navigator && _navigator.getCurrentRoutes().length >1) { // if length >1 means not in mainPage 
-//     _navigator.pop();
-//     return true;
-//   } else {
-//     return false;
-//   }
-// });
+BackAndroid.addEventListener('hardwareBackPress',function () {
+  if (_navigator && _navigator.getCurrentRoutes().length >1) { // if length >1 means not in mainPage 
+    _navigator.pop();
+    return true;
+  } else {
+    return false;
+  }
+});
 var AwesomeProject = React.createClass({
-  // RouteMapper: function  (route,navigationOperations,onComponetRef) {
-  //   _navigator = navigationOperations;
-  //   if (route.name === 'home') {
-  //     return (
-  //       <View style = {styles.container} >
-  //         <MainScreen navigator = {navigationOperations}/>
-  //       </View>
-  //       );
-  //   } else if (route.name === 'detail') {
-  //     return ( <View style = {styles.container} >
-
-  //     </View>);
-  //   }
-  // },
+  RouteMapper: function  (route,navigationOperations,onComponetRef) {
+    _navigator = navigationOperations;
+    if (route.name === 'home') {
+      return (
+        <View style = {styles.container} >
+          <MainScreen navigator = {navigationOperations}/>
+        </View>
+        );
+    } else if (route.name === 'detail') {
+      return ( <View style = {styles.container} >
+          // <DetailScreen navigator = {navigationOperations} data = {route.data}/>
+          <Text>dddddddddd</Text>
+      </View>);
+    }
+  },
   render:function() {
-    // var initialRoute = {name:'home'};
+    var initialRoute = {name:'home'};
     return (
-        // <Navigator 
-        //     style  = {styles.container}
-        //     initialRoute = {initialRoute}
-        //     configureScene={() => Navigator.SceneConfigs.FadeAndroid}
-        //     renderScene={this.RouteMapper} />
-        <MainScreen/>
+        <Navigator 
+            style  = {styles.container}
+            initialRoute = {initialRoute}
+            configureScene={() => Navigator.SceneConfigs.FadeAndroid}
+            renderScene={this.RouteMapper} />
       );
   },
 });

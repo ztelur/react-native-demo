@@ -11,6 +11,7 @@ var {
   View,
   DrawerLayoutAndroid,
   ToolbarAndroid,
+  Text
 } = React;
 
 var toolbarActions = [
@@ -30,7 +31,7 @@ var MainScreen = React.createClass({
         );
       return (
           <DrawerLayoutAndroid
-            drawerWidth = {300}
+            drawerWidth = {90}
             drawerPosition={DrawerLayoutAndroid.positions.Left}
             renderNavigationView = {() => navigationView} 
             ref = {'drawer'}>
@@ -40,9 +41,17 @@ var MainScreen = React.createClass({
                 titlecolor = 'white'
                 title = 'actionbar'
                 actions = {toolbarActions}
-                onIconClicked = {() =>this.refs['drawer'].openDrawer()}
+                onIconClicked = {() =>{
+                	// this.refs['drawer'].openDrawer()}
+                	var navigator = this.props.navigator;
+                	navigator.push({
+                		title : 'ddd',
+  			name: 'detail',
+  			data: {title:"dddd",year:'1023',posters:{thumbnail:'xxxxxx'}},
+                	});
+                }}
                 style = {styles.toolbar}/>
-            <MainList  />
+            <MainList  navigator = {this.props.navigator}/>
             </View>
             </DrawerLayoutAndroid>
         );
@@ -61,7 +70,7 @@ var styles = StyleSheet.create({
   },
     toolbar: {
     backgroundColor: '#00a2ed',
-    height: 100,
+    height: 50,
   },
   ViewInDraw:{
     margin:10,
