@@ -7,45 +7,67 @@
 var React = require('react-native');
 var {
   AppRegistry,
+  Image,
   StyleSheet,
   Text,
   View,
+  DrawerLayoutAndroid,
+  ToolbarAndroid,
 } = React;
 
+var MainList = require('./MainList');
+var toolbarActions = [
+  {title:'notice',icon:require('image!ic_launcher'),show:'always'},
+  {title:'setting',show:'never'},
+];
 var AwesomeProject = React.createClass({
-  render: function() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
-  }
+  render:function() {
+      var navigationView = (
+          <View style = {styles.navigationView}>
+            <Text style = {styles.ViewInDraw}> I am in the drawer!</Text>
+          </View>
+        );
+      return (
+          <DrawerLayoutAndroid
+            drawerWidth = {300}
+            drawerPosition={DrawerLayoutAndroid.positions.Left}
+            renderNavigationView = {() => navigationView} 
+            ref = {'drawer'}
+             >
+            <View style = {styles.container}> 
+            <ToolbarAndroid 
+                navIcon = {require('image!ic_launcher')} 
+                titlecolor = 'white'
+                title = 'actionbar'
+                actions = {toolbarActions}
+                onIconClicked = {() =>this.refs['drawer'].openDrawer()}
+                style = {styles.toolbar}
+                />
+            <MainList />
+            </View>
+            </DrawerLayoutAndroid>
+        );
+  },
 });
 
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    flexDirection: 'column',
+    backgroundColor: '#FAFAFA',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  navigationView: {
+    flex:1,
+    backgroundColor:'#00ff00',
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    toolbar: {
+    backgroundColor: '#00a2ed',
+    height: 100,
+  },
+  ViewInDraw:{
+    margin:10,
+    fontSize:15,
+    textAlign:'left',
   },
 });
 
