@@ -26,6 +26,7 @@
           				source={{uri:data.posters.thumbnail}}
           				style={styles.thumbnail}/>
  				<TextInput  defaultValue = {'dddddd'}/>
+ 				// <PurchaseSuccessView />
  			</View>
  			);
  	},

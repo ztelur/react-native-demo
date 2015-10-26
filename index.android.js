@@ -18,6 +18,7 @@ var {
 // sel-defined component
 var MainScreen = require('./MainScreen');
 var DetailScreen = require('./DetailScreen');
+var ComplexScreen = require('./ComplexScreen');
 var _navigator;
 /** backpress button **/
 BackAndroid.addEventListener('hardwareBackPress',function () {
@@ -44,10 +45,16 @@ var AwesomeProject = React.createClass({
           </View>
 
       );
+    } else if (route.name == 'test') {
+      return ( 
+          <View style = {styles.container} >
+            <ComplexScreen Navigator = {navigationOperations} data = {route.data} />
+          </View>
+      );
     }
   },
   render:function() {
-    var initialRoute = {name:'home'};
+    var initialRoute = {name:'test'};
     return (
         <Navigator 
             style  = {styles.container}

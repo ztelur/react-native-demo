@@ -1,6 +1,5 @@
 package com.awesomeproject;
 
-import com.awesomeproject.widget.PurchaseSuccessManager;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;
 import com.facebook.react.bridge.NativeModule;
@@ -25,13 +24,13 @@ public class ModulePackage implements ReactPackage {
 
 	@Override
 	public List<Class<? extends JavaScriptModule>> createJSModules() {
-		return null;
+		List<Class<? extends JavaScriptModule>> modules = new ArrayList<Class<? extends JavaScriptModule>>();
+		return modules;
 	}
 
 	@Override
 	public List<ViewManager> createViewManagers(ReactApplicationContext reactApplicationContext) {
 		List<ViewManager> list = new ArrayList<ViewManager>();
-		list.add(new PurchaseSuccessManager());
 		return list;
 	}
 }
